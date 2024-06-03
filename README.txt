@@ -16,6 +16,17 @@ FYI
 * I did write unit tests for the lambdas and Glue job but I just didn't have enought time to run them and get them to work 100%.
 
 
+BONUS QUESTIONS
+
+1. In order to handle high volume of data, the solution is pretty straight forward - handle part of the data and not the whole of it.
+   The idea is to create a CDC (Change data Capture) and only work only on the modified/new data. Since the unmodified data is already there, we filter it out from our 
+   Dataframe and apply our transformations on it.
+
+2. Another solution is to use micro services in order to get data, transform it, and load it. 
+   Similar to the solution presented here where we have 3 micro services working together under one orchestrator.
+   This approach can be improved while working with Airflow's XCOM to be able to communicate between the microservices using key:value.
+
+
 This is just a basic pipeline which through time could be improved (classes,functions, connectors, etc).
 
 Boaz,
