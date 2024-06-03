@@ -1,0 +1,42 @@
+[2024-06-02T09:21:10.086+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-02T09:21:10.099+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: api_to_redshift.fetch_data_task manual__2024-06-02T09:21:06.631087+00:00 [queued]>
+[2024-06-02T09:21:10.103+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: api_to_redshift.fetch_data_task manual__2024-06-02T09:21:06.631087+00:00 [queued]>
+[2024-06-02T09:21:10.104+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2024-06-02T09:21:10.111+0000] {taskinstance.py:2330} INFO - Executing <Task(BashOperator): fetch_data_task> on 2024-06-02 09:21:06.631087+00:00
+[2024-06-02T09:21:10.117+0000] {warnings.py:110} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=60) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-06-02T09:21:10.119+0000] {standard_task_runner.py:63} INFO - Started process 62 to run task
+[2024-06-02T09:21:10.120+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'api_to_redshift', 'fetch_data_task', 'manual__2024-06-02T09:21:06.631087+00:00', '--job-id', '131', '--raw', '--subdir', 'DAGS_FOLDER/get_data.py', '--cfg-path', '/tmp/tmpv22vyctu']
+[2024-06-02T09:21:10.122+0000] {standard_task_runner.py:91} INFO - Job 131: Subtask fetch_data_task
+[2024-06-02T09:21:10.169+0000] {task_command.py:426} INFO - Running <TaskInstance: api_to_redshift.fetch_data_task manual__2024-06-02T09:21:06.631087+00:00 [running]> on host 2d654ec39a37
+[2024-06-02T09:21:10.229+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Data Team' AIRFLOW_CTX_DAG_ID='api_to_redshift' AIRFLOW_CTX_TASK_ID='fetch_data_task' AIRFLOW_CTX_EXECUTION_DATE='2024-06-02T09:21:06.631087+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-06-02T09:21:06.631087+00:00'
+[2024-06-02T09:21:10.231+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-02T09:21:10.232+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2024-06-02T09:21:10.233+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', "curl 'http://api-to-s3-lambda:9000/2015-03-31/functions/function/invocations' -d '{}'"]
+[2024-06-02T09:21:10.242+0000] {subprocess.py:86} INFO - Output:
+[2024-06-02T09:21:10.258+0000] {subprocess.py:93} INFO -   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+[2024-06-02T09:21:10.259+0000] {subprocess.py:93} INFO -                                  Dload  Upload   Total   Spent    Left  Speed
+[2024-06-02T09:21:10.261+0000] {subprocess.py:93} INFO -   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+[2024-06-02T09:21:10.262+0000] {subprocess.py:93} INFO - curl: (7) Failed to connect to api-to-s3-lambda port 9000 after 4 ms: Couldn't connect to server
+[2024-06-02T09:21:10.263+0000] {subprocess.py:97} INFO - Command exited with return code 7
+[2024-06-02T09:21:10.264+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-02T09:21:10.274+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/bash.py", line 243, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 7.
+[2024-06-02T09:21:10.278+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=api_to_redshift, task_id=fetch_data_task, run_id=manual__2024-06-02T09:21:06.631087+00:00, execution_date=20240602T092106, start_date=20240602T092110, end_date=20240602T092110
+[2024-06-02T09:21:10.287+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 131 for task fetch_data_task (Bash command failed. The command returned a non-zero exit code 7.; 62)
+[2024-06-02T09:21:10.333+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-06-02T09:21:10.349+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-06-02T09:21:10.352+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

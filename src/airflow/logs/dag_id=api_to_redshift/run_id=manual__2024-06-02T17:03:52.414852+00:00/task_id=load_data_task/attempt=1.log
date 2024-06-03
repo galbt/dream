@@ -1,0 +1,27 @@
+[2024-06-02T17:03:58.703+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-02T17:03:58.715+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: api_to_redshift.load_data_task manual__2024-06-02T17:03:52.414852+00:00 [queued]>
+[2024-06-02T17:03:58.721+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: api_to_redshift.load_data_task manual__2024-06-02T17:03:52.414852+00:00 [queued]>
+[2024-06-02T17:03:58.722+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2024-06-02T17:03:58.730+0000] {taskinstance.py:2330} INFO - Executing <Task(BashOperator): load_data_task> on 2024-06-02 17:03:52.414852+00:00
+[2024-06-02T17:03:58.737+0000] {warnings.py:110} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=125) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-06-02T17:03:58.738+0000] {standard_task_runner.py:63} INFO - Started process 127 to run task
+[2024-06-02T17:03:58.739+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'api_to_redshift', 'load_data_task', 'manual__2024-06-02T17:03:52.414852+00:00', '--job-id', '326', '--raw', '--subdir', 'DAGS_FOLDER/get_data.py', '--cfg-path', '/tmp/tmpxawbdwsf']
+[2024-06-02T17:03:58.741+0000] {standard_task_runner.py:91} INFO - Job 326: Subtask load_data_task
+[2024-06-02T17:03:58.782+0000] {task_command.py:426} INFO - Running <TaskInstance: api_to_redshift.load_data_task manual__2024-06-02T17:03:52.414852+00:00 [running]> on host aa1e31c12116
+[2024-06-02T17:03:58.856+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Data Team' AIRFLOW_CTX_DAG_ID='api_to_redshift' AIRFLOW_CTX_TASK_ID='load_data_task' AIRFLOW_CTX_EXECUTION_DATE='2024-06-02T17:03:52.414852+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-06-02T17:03:52.414852+00:00'
+[2024-06-02T17:03:58.858+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-02T17:03:58.859+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2024-06-02T17:03:58.860+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', "curl 'http://s3-to-redshift-lambda:8080/2015-03-31/functions/function/invocations' -d '{}'"]
+[2024-06-02T17:03:58.872+0000] {subprocess.py:86} INFO - Output:
+[2024-06-02T17:03:58.885+0000] {subprocess.py:93} INFO -   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+[2024-06-02T17:03:58.888+0000] {subprocess.py:93} INFO -                                  Dload  Upload   Total   Spent    Left  Speed
+[2024-06-02T17:03:58.987+0000] {subprocess.py:93} INFO -   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   780  100   778  100     2   7681     19 --:--:-- --:--:-- --:--:--  7722
+[2024-06-02T17:03:58.989+0000] {subprocess.py:93} INFO - {"errorMessage": "An error occurred (NoSuchKey) when calling the GetObject operation: The specified key does not exist.", "errorType": "NoSuchKey", "requestId": "58987364-638e-42a0-8afd-3294fae1cf13", "stackTrace": ["  File \"/var/task/lambda_function.py\", line 47, in lambda_handler\n    df = get_source_data()\n", "  File \"/var/task/lambda_function.py\", line 22, in get_source_data\n    response = s3_client.get_object(Bucket=source_bucket, Key=file_key)\n", "  File \"/var/lang/lib/python3.12/site-packages/botocore/client.py\", line 553, in _api_call\n    return self._make_api_call(operation_name, kwargs)\n", "  File \"/var/lang/lib/python3.12/site-packages/botocore/client.py\", line 1009, in _make_api_call\n    raise error_class(parsed_response, operation_name)\n"]}
+[2024-06-02T17:03:58.990+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2024-06-02T17:03:58.991+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-02T17:03:59.048+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=api_to_redshift, task_id=load_data_task, run_id=manual__2024-06-02T17:03:52.414852+00:00, execution_date=20240602T170352, start_date=20240602T170358, end_date=20240602T170359
+[2024-06-02T17:03:59.079+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-06-02T17:03:59.100+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-06-02T17:03:59.102+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
