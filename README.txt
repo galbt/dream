@@ -19,7 +19,7 @@ FYI
 This is just a basic pipeline which through time could be improved (classes,functions, connectors, etc).
 
 Boaz,
-I studied so much while preparing this task (ommiting the amount of hours that took me to complete this),
+I learned so much while preparing this task (ommiting the amount of hours that took me to complete this),
 so even if this pipeline is not 100% of what was expected, I still want to thank you for this opportunity. I truly did my best.
 
 Gal Ben-Tovim
