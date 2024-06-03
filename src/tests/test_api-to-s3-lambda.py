@@ -1,8 +1,4 @@
 import unittest
-from unittest.mock import patch, MagicMock
-import json
-import os
-from moto import s3
 import boto3
 import sys
 from pathlib import Path
