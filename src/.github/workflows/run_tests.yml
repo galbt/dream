@@ -2,17 +2,39 @@ name: Run Unit Tests
 
 on:
   push:
-    branches: [ main ] 
-  pull_request:
-    branches: [ main ] 
+    branches: [ "main" ]
+
+  # schedule: #We can schedule tests if we want
+  #   - cron: '0 10 * * *' # 10 AM UTC (1 PM Israel time) - UTC + 3
+  #   - cron: '0 17 * * *' # 17 PM UTC (20 PM Israel time) - UTC + 3
+
+permissions:
+  contents: read
 
 jobs:
-  build:
+  tests:
+
     runs-on: ubuntu-latest
+    env:
+      TZ: Asia/Jerusalem
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
-    - name: Build Docker image
-      run: docker build -t tests .
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.11"
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r ./tests/requirements.txt
+
+    - name: Run api-to-s3-lambda test
+      run: |
+        python ./tests/test_api-to-s3-lambda.py
+
+    - name: Run s3_to_redshift_lambda test
+      run: |
+        python ./tests/test_s3_to_redshift_lambda.py
